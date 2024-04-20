@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4fe697d3593a7418a75307755746c0, type: 3}
+  m_Name: ListLevels
+  m_EditorClassIdentifier: 
+  listLevelDetails:
+  - levelId: 0
+    coins: 200
+    health: 7
+    isLock: 0
+    isCompleted: 0
+    characters:
+    - Hammer
+    - Archer
+    waves:
+    - enemyType: Snail
+      enemyCount: 5
+    - enemyType: Chameleon
+      enemyCount: 5
+    - enemyType: Chameleon
+      enemyCount: 3
+    - enemyType: Snail
+      enemyCount: 10
+    - enemyType: Chameleon
+      enemyCount: 9
+  - levelId: 1
+    coins: 200
+    health: 5
+    isLock: 1
+    isCompleted: 0
+    characters:
+    - Hammer
+    - Archer
+    waves:
+    - enemyType: Snail
+      enemyCount: 5
+    - enemyType: Chameleon
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 3
+    - enemyType: Chameleon
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Bat
+      enemyCount: 5
+    - enemyType: Bat
+      enemyCount: 5
+    - enemyType: Chameleon
+      enemyCount: 11
+    - enemyType: Pig
+      enemyCount: 16
+    - enemyType: Pig
+      enemyCount: 10
+    - enemyType: Pig
+      enemyCount: 10
+    - enemyType: Pig
+      enemyCount: 10
+    - enemyType: Pig
+      enemyCount: 10
+  - levelId: 2
+    coins: 180
+    health: 7
+    isLock: 1
+    isCompleted: 0
+    characters:
+    - Bomber
+    - Hammer
+    - Archer
+    waves:
+    - enemyType: Snail
+      enemyCount: 7
+    - enemyType: Chameleon
+      enemyCount: 7
+    - enemyType: Chameleon
+      enemyCount: 7
+    - enemyType: Pig
+      enemyCount: 7
+    - enemyType: Pig
+      enemyCount: 7
+    - enemyType: Rino
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 11
+    - enemyType: Pig
+      enemyCount: 11
+    - enemyType: Rino
+      enemyCount: 10
+    - enemyType: Bat
+      enemyCount: 5
+    - enemyType: Bat
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Rino
+      enemyCount: 5
+    - enemyType: Rino
+      enemyCount: 7
+    - enemyType: Rino
+      enemyCount: 5
+    - enemyType: Rino
+      enemyCount: 5
+    - enemyType: Rino
+      enemyCount: 5
+  - levelId: 3
+    coins: 237
+    health: 5
+    isLock: 1
+    isCompleted: 0
+    characters:
+    - Witcher
+    - Bomber
+    - Hammer
+    - Archer
+    waves:
+    - enemyType: Chameleon
+      enemyCount: 7
+    - enemyType: Bat
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 7
+    - enemyType: Rino
+      enemyCount: 2
+    - enemyType: Rino
+      enemyCount: 2
+    - enemyType: Rino
+      enemyCount: 2
+    - enemyType: Rino
+      enemyCount: 2
+    - enemyType: Rino
+      enemyCount: 2
+    - enemyType: Rino
+      enemyCount: 2
+    - enemyType: Rino
+      enemyCount: 2
+    - enemyType: Rino
+      enemyCount: 13
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Rino
+      enemyCount: 6
+    - enemyType: Rino
+      enemyCount: 9
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Bat
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 10
+    - enemyType: Pig
+      enemyCount: 7
+    - enemyType: Pig
+      enemyCount: 7
+    - enemyType: Pig
+      enemyCount: 7
+    - enemyType: Rino
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
+    - enemyType: Pig
+      enemyCount: 5
