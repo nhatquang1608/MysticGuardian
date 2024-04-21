@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
 
     [Header("List Poolers")]
     [SerializeField] private GameController gameController;
+    public Waypoints[] listWaypoints;
     public List<ObjectPooler> listPoolers = new List<ObjectPooler>();
 
     private void Start()
@@ -57,7 +58,7 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy(int index)
     {
         GameObject newInstance = listPoolers[poolIndex].GetInstanceFromPool(index);
-        newInstance.transform.position = GetComponent<Waypoints>().Points[0];
+        newInstance.transform.position = listWaypoints[0].Points[0];
         newInstance.SetActive(true);
     }
 }

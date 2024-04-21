@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float moveDefault;
     [SerializeField] private float moveSlow;
     [SerializeField] private Waypoints waypoints;
+    [SerializeField] private Spawner spawner;
     public ObjectPooler objectPooler;
     [SerializeField] private GameController gameController;
 
@@ -28,8 +29,19 @@ public class Enemy : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyHealth = GetComponent<EnemyHealth>();
-        waypoints = GameObject.Find("Spawner").GetComponent<Waypoints>();
+        spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        if(spawner.listWaypoints.Length != 1)
+        {
+            System.Random random = new System.Random();
+            int randomIndex = random.Next(spawner.listWaypoints.Length);
+            waypoints = spawner.listWaypoints[randomIndex];
+        }
+        else
+        {
+            waypoints = spawner.listWaypoints[0];
+        }
 
         currentPointPosition = waypoints.Points[currentWaypointIndex];
         lastPointPosition = transform.position;
@@ -37,9 +49,6 @@ public class Enemy : MonoBehaviour
         moveSlow = moveDefault - 0.5f;
         moveSpeed = moveDefault;
     }
-
-    private void OnEnable()
-    {}
 
     private void Update()
     {

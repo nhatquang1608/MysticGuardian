@@ -34,8 +34,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] protected GameObject radius;
     [SerializeField] protected GameObject upgradePanel;
 
-    [SerializeField] protected GameController gameController;
     [SerializeField] protected Animator animator;
+    [SerializeField] protected GameController gameController;
     [SerializeField] protected Enemy currentEnemyTarget;
     [SerializeField] protected List<Enemy> listTargetEnemies;
 
