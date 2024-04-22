@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private TextMeshProUGUI healthText;
     public Image waveProgress;
+    private int poolerDestroyCount;
 
     [Header("Store")]
     [SerializeField] private Button witcherButtonPrefab;
@@ -38,6 +39,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject batPrefab;
 
     [Header("Controller")]
+    [SerializeField] private TextMeshProUGUI healthDecreaseText;
+    [SerializeField] private TextMeshProUGUI coinRewardText;
     [SerializeField] private CanvasGroup gameOver;
     [SerializeField] private GameObject completedPanel;
     [SerializeField] private GameObject failedPanel;
@@ -139,6 +142,7 @@ public class GameController : MonoBehaviour
     private void OnEnable()
     {
         Enemy.OnDecreaseHealth += DecreaseHealth;
+        EnemyHealth.OnEnemyKilled += EnemyKilled;
         ObjectPooler.OnDestroyPooler += DestroyPooler;
     }
 
@@ -173,6 +177,8 @@ public class GameController : MonoBehaviour
     private void DecreaseHealth()
     {
         health--;
+        SoundManager.Instance.PlaySound(SoundManager.Instance.decreaseHealthSound);
+        healthDecreaseText.text = "-1";
         if(health <= 0)
         {
             health = 0;
@@ -180,6 +186,23 @@ public class GameController : MonoBehaviour
             GameOver(false);
         }
         SetText();
+        StartCoroutine(ShowChangeParameters(healthDecreaseText.gameObject));
+    }
+
+    private void EnemyKilled(int deathCoinReward)
+    {
+        coins += deathCoinReward;
+        SoundManager.Instance.PlaySound(SoundManager.Instance.enemyDead);
+        coinRewardText.text = "+" + deathCoinReward.ToString();
+        SetText();
+        StartCoroutine(ShowChangeParameters(coinRewardText.gameObject));
+    }
+
+    private IEnumerator ShowChangeParameters(GameObject info)
+    {
+        info.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        info.SetActive(false);
     }
 
     private void DestroyPooler(ObjectPooler objectPooler)
@@ -193,7 +216,8 @@ public class GameController : MonoBehaviour
         //     GameOver(true);
         // }
 
-        if(spawner.poolIndex == spawner.listPoolers.Count)
+        poolerDestroyCount++;
+        if(poolerDestroyCount == spawner.listPoolers.Count)
         {
             isGameOver = true;
             GameOver(true);
@@ -254,11 +278,35 @@ public class GameController : MonoBehaviour
         }
 
         canvasGroup.alpha = to;
+
+        if(completed)
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.completedSound);
+        }
+        else
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.failedSound);
+        }
+    }
+
+    public void ShowEffect(GameObject effect, GameObject instance)
+    {
+        StartCoroutine(Effect(effect, instance));
+    }
+
+    private IEnumerator Effect(GameObject effect, GameObject instance)
+    {
+        GameObject newEffect = Instantiate (effect, instance.transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(0.4f);
+
+        Destroy(newEffect);
     }
 
     private void OnDisable()
     {
         Enemy.OnDecreaseHealth -= DecreaseHealth;
+        EnemyHealth.OnEnemyKilled -= EnemyKilled;
         ObjectPooler.OnDestroyPooler -= DestroyPooler;
     }
 }

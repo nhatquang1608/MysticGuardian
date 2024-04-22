@@ -44,6 +44,26 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    public void ReturnToPool(GameObject instance, GameObject coinReward)
+    {
+        StartCoroutine(Effect(coinReward, instance));
+        returnCount++;
+        if(returnCount == poolSize)
+        {
+            OnDestroyPooler?.Invoke(this);
+        }
+    }
+
+    private IEnumerator Effect(GameObject coinReward, GameObject instance)
+    {
+        GameObject newEffect = Instantiate (coinReward, instance.transform.position, Quaternion.identity);
+        instance.SetActive(false);
+
+        yield return new WaitForSeconds(0.4f);
+
+        Destroy(newEffect);
+    }
+
     public static IEnumerator ReturnToPoolWithDelay(GameObject instance, float delay)
     {
         yield return new WaitForSeconds(delay);

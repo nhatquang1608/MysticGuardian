@@ -8,6 +8,17 @@ public class Enemy : MonoBehaviour
 {
     public static event Action OnDecreaseHealth;
     public static Action<Enemy> OnEndReached;
+
+    public enum EnemyType
+    {
+        Snail,
+        Chameleon,
+        Pig,
+        Rino,
+        Bat
+    }
+
+    public EnemyType enemyType;
     
     private Vector3 currentPointPosition;
     private Vector3 lastPointPosition;

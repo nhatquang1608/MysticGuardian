@@ -243,6 +243,9 @@ MonoBehaviour:
   moveSpeed: 10
   minDistanceToDealDamage: 0.1
   characterDamage: 0
+  deltaRotate: 0
+  enemyTarget: {fileID: 0}
+  effect: {fileID: 100014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
 --- !u!1 &7309311090568173860
 GameObject:
   m_ObjectHideFlags: 0

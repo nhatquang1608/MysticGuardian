@@ -13,6 +13,7 @@ public class Hammer : CharacterController
             {
                 if(listTargetEnemies[i]) listTargetEnemies[i].enemyHealth.DealDamage(damage);
             }
+            SoundManager.Instance.PlaySound(SoundManager.Instance.hammerSound);
             animator.SetBool("attack", true);
         }
         else

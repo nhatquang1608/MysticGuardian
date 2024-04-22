@@ -14,6 +14,7 @@ public class Witcher : CharacterController
         {
             Projectile projectile = Instantiate(powerPrefab, projectileSpawnPosition.position, Quaternion.identity);
             projectile.SetParameters(currentEnemyTarget, damage);
+            SoundManager.Instance.PlaySound(SoundManager.Instance.witcherSound);
             animator.SetBool("attack", true);
         }
         else

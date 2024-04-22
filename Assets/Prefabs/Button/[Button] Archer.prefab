@@ -294,7 +294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 20
+  m_text: 60
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621ccf568da924f4e99ef2a5a8913a90, type: 2}
   m_sharedMaterial: {fileID: 5451375422683710955, guid: 621ccf568da924f4e99ef2a5a8913a90, type: 2}
@@ -321,8 +321,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -507,6 +507,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delta: 0.5
+  canPurchase: 0
+  characterPosition: {x: 0, y: 0, z: 0}
   demoPrefab: {fileID: 8721706970088022027, guid: 7599fca9b0e8de040a2a7d4ea5772e72, type: 3}
   characterPrefab: {fileID: 7901217622621201635, guid: 9d17e2e8ef8eb5f44a21c4671982bff9, type: 3}
   gameController: {fileID: 0}

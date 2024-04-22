@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5ae81b2ab92a6449dbce69f05951b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   enemyHealth: {fileID: 0}
   poisoned: 0
   timePoisoned: 0
@@ -209,6 +210,9 @@ MonoBehaviour:
   moveDefault: 1
   moveSlow: 0
   waypoints: {fileID: 0}
+  spawner: {fileID: 0}
+  objectPooler: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!114 &2735732624190485846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +230,7 @@ MonoBehaviour:
   maxHealth: 60
   deathCoinReward: 6
   currentHealth: 0
+  coinReward: {fileID: 100000, guid: d472b7b27e72bb5448b7d9e288ad893e, type: 3}
 --- !u!114 &7190880885014625510
 MonoBehaviour:
   m_ObjectHideFlags: 0

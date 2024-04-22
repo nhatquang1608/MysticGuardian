@@ -26,6 +26,7 @@ public class CharacterPurchaseButton : MonoBehaviour, IPointerDownHandler, IDrag
         Vector3 touchPosition = Camera.main.ScreenToWorldPoint(eventData.position);
         touchPosition.z = 0;
         gameController.characterDemo.transform.position = touchPosition;
+        SoundManager.Instance.PlaySound(SoundManager.Instance.selectedCharacterSound);
     }
 
     public void OnDrag (PointerEventData eventData)
@@ -52,11 +53,16 @@ public class CharacterPurchaseButton : MonoBehaviour, IPointerDownHandler, IDrag
     {
         if(gameController.characterDemo)
         {
-            if(!canPurchase) Destroy(gameController.characterDemo);
+            if(!canPurchase) 
+            {
+                Destroy(gameController.characterDemo);
+                SoundManager.Instance.PlaySound(SoundManager.Instance.cancelCharacterSound);
+            }
             else
             {
                 GameObject character = Instantiate(characterPrefab);
                 character.transform.position = characterPosition;
+                SoundManager.Instance.PlaySound(SoundManager.Instance.placedCharacterSound);
                 Destroy(gameController.characterDemo);
             }
         }

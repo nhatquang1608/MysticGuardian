@@ -125,6 +125,8 @@ public class CharacterController : MonoBehaviour
             damage += damageUpgrade;
             gameController.coins -= priceUpgrade;
             upgradeInfoText.text = "Upgrade to level 3";
+
+            SoundManager.Instance.PlaySound(SoundManager.Instance.upgradeCharacterSound);
         }
         else if(currentLevel == 3)
         {
@@ -137,6 +139,8 @@ public class CharacterController : MonoBehaviour
             damage += damageUpgrade;
             gameController.coins -= priceUpgrade;
             upgradeInfoText.text = "Max level";
+
+            SoundManager.Instance.PlaySound(SoundManager.Instance.upgradeCharacterSound);
         }
 
         HideUpgrade();
@@ -147,8 +151,19 @@ public class CharacterController : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            listTargetEnemies.Add(enemy);
+            if(other.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Bat)
+            {
+                if(role == CharacterRole.Archer || role == CharacterRole.Witcher)
+                {
+                    Enemy bat = other.GetComponent<Enemy>();
+                    listTargetEnemies.Add(bat);
+                }
+            }
+            else
+            {
+                Enemy enemy = other.GetComponent<Enemy>();
+                listTargetEnemies.Add(enemy);
+            }
         }
     }
 

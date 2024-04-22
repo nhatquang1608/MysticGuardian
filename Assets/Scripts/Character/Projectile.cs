@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public static Action<Enemy, float> OnEnemyHit;
-
     protected enum Type
     {
         Arrow,
@@ -21,7 +19,23 @@ public class Projectile : MonoBehaviour
 
     public float characterDamage;
     [SerializeField] private float deltaRotate;
+    [SerializeField] private bool isBegin;
+    [SerializeField] private Vector3 pointTarget;
     [SerializeField] private Enemy enemyTarget;
+    [SerializeField] private GameObject effect;
+    [SerializeField] private GameController gameController;
+
+    protected virtual void Start()
+    {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        if(type == Type.Arrow || type == Type.Bom)
+        {
+            isBegin = true;
+            pointTarget = transform.position + new Vector3(0, 1f, 0);
+            transform.Rotate(0, 0, 90);
+        }
+    }
 
     protected virtual void Update()
     {
@@ -38,31 +52,44 @@ public class Projectile : MonoBehaviour
 
     protected virtual void MoveProjectile()
     {
-        transform.position = Vector2.MoveTowards(transform.position, enemyTarget.transform.position, moveSpeed * Time.deltaTime);
-
-        if(type != Type.Bom)
+        if(isBegin)
         {
-            float distanceToTarget = Vector2.Distance(enemyTarget.transform.position, transform.position);
-            if(distanceToTarget < minDistanceToDealDamage)
+            transform.position = Vector2.MoveTowards(transform.position, pointTarget, moveSpeed * Time.deltaTime);
+            float distance = Vector2.Distance(pointTarget, transform.position);
+            if(distance < minDistanceToDealDamage)
             {
-                OnEnemyHit?.Invoke(enemyTarget, characterDamage);
-                enemyTarget.enemyHealth.DealDamage(characterDamage);
+                isBegin = false;
+            }
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, enemyTarget.transform.position, moveSpeed * Time.deltaTime);
 
-                if(type == Type.Magic)
+            if(type != Type.Bom)
+            {
+                float distanceToTarget = Vector2.Distance(enemyTarget.transform.position, transform.position);
+                if(distanceToTarget < minDistanceToDealDamage)
                 {
-                    enemyTarget.Poisoned();
-                }
+                    enemyTarget.enemyHealth.DealDamage(characterDamage);
 
-                Destroy(gameObject);
+                    if(type == Type.Magic)
+                    {
+                        enemyTarget.Poisoned();
+                    }
+
+                    gameController.ShowEffect(effect, gameObject);
+                    Destroy(gameObject);
+                }
             }
         }
     }
 
     private void RotateProjectile()
     {
+        if(isBegin) return;
         Vector3 enemyPos = enemyTarget.transform.position - transform.position;
         float angle = Vector3.SignedAngle(transform.up, enemyPos, transform.forward);
-        transform.Rotate(0, 0, angle + deltaRotate);
+        if(!isBegin) transform.Rotate(0, 0, angle + deltaRotate);
     }
 
     public void SetParameters(Enemy enemy, float damage)
@@ -79,8 +106,8 @@ public class Projectile : MonoBehaviour
             if(distanceToTarget < minDistanceToDealDamage)
             {
                 Enemy enemy = other.GetComponent<Enemy>();
-                OnEnemyHit?.Invoke(enemy, characterDamage);
                 enemy.enemyHealth.DealDamage(characterDamage);
+                gameController.ShowEffect(effect, gameObject);
                 Destroy(gameObject);
             }
         }

@@ -18,8 +18,11 @@ public class ItemSelect : MonoBehaviour
 
     private void Play()
     {
-        SaveLoadData.Instance.level = levelId;
-        SceneManager.LoadScene("GameScene");
+        if(!SaveLoadData.Instance.listLevels.listLevelDetails[levelId].isLock)
+        {
+            SaveLoadData.Instance.level = levelId;
+            SceneManager.LoadScene("GameScene");
+        }
     }
 
     public void SetLock(bool locked, int level)

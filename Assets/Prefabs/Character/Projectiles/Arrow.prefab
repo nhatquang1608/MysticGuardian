@@ -130,3 +130,4 @@ MonoBehaviour:
   characterDamage: 0
   deltaRotate: 90
   enemyTarget: {fileID: 0}
+  effect: {fileID: 100000, guid: 3f0a353f690c04d4c805554662e04bfe, type: 3}

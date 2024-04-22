@@ -14,6 +14,7 @@ public class Bomber : CharacterController
         {
             Projectile projectile = Instantiate(bomPrefab, projectileSpawnPosition.position, Quaternion.identity);
             projectile.SetParameters(currentEnemyTarget, damage);
+            SoundManager.Instance.PlaySound(SoundManager.Instance.bomberSound);
             animator.SetBool("attack", true);
         }
         else

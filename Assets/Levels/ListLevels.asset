@@ -161,20 +161,20 @@ MonoBehaviour:
     - enemyType: Pig
       enemyCount: 7
     - enemyType: Pig
-      enemyCount: 7
+      enemyCount: 10
     - enemyType: Pig
-      enemyCount: 7
+      enemyCount: 10
     - enemyType: Rino
-      enemyCount: 5
+      enemyCount: 10
+    - enemyType: Bat
+      enemyCount: 10
+    - enemyType: Rino
+      enemyCount: 10
     - enemyType: Pig
-      enemyCount: 5
+      enemyCount: 10
+    - enemyType: Rino
+      enemyCount: 10
     - enemyType: Pig
-      enemyCount: 5
-    - enemyType: Pig
-      enemyCount: 5
-    - enemyType: Pig
-      enemyCount: 5
-    - enemyType: Pig
-      enemyCount: 5
-    - enemyType: Pig
-      enemyCount: 5
+      enemyCount: 10
+    - enemyType: Rino
+      enemyCount: 10

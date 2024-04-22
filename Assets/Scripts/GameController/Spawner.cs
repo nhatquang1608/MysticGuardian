@@ -8,9 +8,9 @@ public class Spawner : MonoBehaviour
     [Header("Fixed Delay")]
     public float currentTime;
     public float totalTime;
-    [SerializeField] private float delayBtwSpawns;
-    [SerializeField] private float delayPoolSpawns;
-    [SerializeField] private int enemySpawned;
+    private float delayBtwSpawns = 1f;
+    private float delayPoolSpawns = 3f;
+    [SerializeField] private int enemySpawned = 0;
     public int poolIndex;
 
     [Header("List Poolers")]
@@ -20,6 +20,9 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        currentTime = 0;
+        totalTime = 0;
+        poolIndex = 0;
         CalculateTotalTime();
         StartCoroutine(SpawnPoolWithDelay());
     }
@@ -28,11 +31,12 @@ public class Spawner : MonoBehaviour
     {
         for(int i=0; i<listPoolers.Count-1; i++)
         {
-            for(int j=0; j<listPoolers[i].poolSize-1; j++)
+            totalTime += (listPoolers[i].poolSize - 3) * delayBtwSpawns;
+
+            if (i < listPoolers.Count - 3)
             {
-                totalTime += delayBtwSpawns;
+                totalTime += delayPoolSpawns;
             }
-            totalTime += delayPoolSpawns;
         }
     }
 

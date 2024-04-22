@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 561648220}
   - component: {fileID: 561648219}
   - component: {fileID: 561648222}
+  - component: {fileID: 561648223}
   m_Layer: 5
   m_Name: '[Button] Level3'
   m_TagString: Untagged
@@ -606,6 +607,19 @@ MonoBehaviour:
   levelId: 0
   levelText: {fileID: 1294378805}
   lockedImage: {fileID: 953776347}
+--- !u!114 &561648223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561648217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5670975fe47504744b140cd7d7b9fc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &904924401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1098,7 @@ GameObject:
   - component: {fileID: 1293355640}
   - component: {fileID: 1293355639}
   - component: {fileID: 1293355642}
+  - component: {fileID: 1293355643}
   m_Layer: 5
   m_Name: '[Button] Level2'
   m_TagString: Untagged
@@ -1210,6 +1225,19 @@ MonoBehaviour:
   levelId: 0
   levelText: {fileID: 904924401}
   lockedImage: {fileID: 1184672601}
+--- !u!114 &1293355643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293355637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5670975fe47504744b140cd7d7b9fc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &1294378805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1386,7 @@ GameObject:
   - component: {fileID: 1300320434}
   - component: {fileID: 1300320433}
   - component: {fileID: 1300320436}
+  - component: {fileID: 1300320437}
   m_Layer: 5
   m_Name: '[Button] Level1'
   m_TagString: Untagged
@@ -1484,6 +1513,19 @@ MonoBehaviour:
   levelId: 0
   levelText: {fileID: 535528431}
   lockedImage: {fileID: 1007563092}
+--- !u!114 &1300320437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300320431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5670975fe47504744b140cd7d7b9fc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &1311057043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +1539,7 @@ GameObject:
   - component: {fileID: 1311057046}
   - component: {fileID: 1311057045}
   - component: {fileID: 1311057048}
+  - component: {fileID: 1311057049}
   m_Layer: 5
   m_Name: '[Button] Level4'
   m_TagString: Untagged
@@ -1623,6 +1666,19 @@ MonoBehaviour:
   levelId: 0
   levelText: {fileID: 1498856660}
   lockedImage: {fileID: 174062263}
+--- !u!114 &1311057049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311057043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5670975fe47504744b140cd7d7b9fc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &1356094778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1691,7 @@ GameObject:
   - component: {fileID: 1356094782}
   - component: {fileID: 1356094781}
   - component: {fileID: 1356094780}
+  - component: {fileID: 1356094783}
   m_Layer: 5
   m_Name: '[Button] Back'
   m_TagString: Untagged
@@ -1756,6 +1813,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356094778}
   m_CullTransparentMesh: 1
+--- !u!114 &1356094783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356094778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5670975fe47504744b140cd7d7b9fc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &1370344099
 GameObject:
   m_ObjectHideFlags: 0

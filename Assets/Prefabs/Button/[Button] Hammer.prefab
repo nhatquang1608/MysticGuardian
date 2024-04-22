@@ -219,6 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delta: 0.5
+  canPurchase: 0
+  characterPosition: {x: 0, y: 0, z: 0}
   demoPrefab: {fileID: 8888462275608668371, guid: f30efadb3aa4a214d90abaa5b858402c, type: 3}
   characterPrefab: {fileID: 1222122222653672511, guid: 7daf931e38878bd479aead3d744c4c26, type: 3}
   gameController: {fileID: 0}
@@ -668,7 +670,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 40
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621ccf568da924f4e99ef2a5a8913a90, type: 2}
   m_sharedMaterial: {fileID: 5451375422683710955, guid: 621ccf568da924f4e99ef2a5a8913a90, type: 2}
@@ -695,8 +697,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

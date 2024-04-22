@@ -14,6 +14,7 @@ public class Archer : CharacterController
         {
             Projectile projectile = Instantiate(arrowPrefab, projectileSpawnPosition.position, Quaternion.identity);
             projectile.SetParameters(currentEnemyTarget, damage);
+            SoundManager.Instance.PlaySound(SoundManager.Instance.archerSound);
             animator.SetBool("attack", true);
         }
         else
