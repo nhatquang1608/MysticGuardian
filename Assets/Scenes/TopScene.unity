@@ -252,7 +252,7 @@ MonoBehaviour:
   cancelCharacterSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
   upgradeCharacterSound: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
   decreaseHealthSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
-  witcherSound: {fileID: 8300000, guid: 84e427d6b66ab4066b6a4dcd0ce819ee, type: 3}
+  witcherSound: {fileID: 8300000, guid: 38a17a92b9d9748c6a1e67972041b833, type: 3}
   bomberSound: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
   hammerSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   archerSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}

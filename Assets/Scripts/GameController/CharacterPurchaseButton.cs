@@ -9,12 +9,21 @@ public class CharacterPurchaseButton : MonoBehaviour, IPointerDownHandler, IDrag
     [SerializeField] private bool canPurchase;
     [SerializeField] private Vector3 characterPosition;
     [SerializeField] private GameObject demoPrefab;
-    [SerializeField] private GameObject characterPrefab;
+    public GameObject characterPrefab;
+    [SerializeField] private Places places;
+    [SerializeField] private GameObject available;
+    [SerializeField] private GameObject unavailable;
     [SerializeField] private GameController gameController;
 
     private void Awake()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+    }
+
+    public void SetAvailable(bool isAvailable)
+    {
+        available.SetActive(isAvailable);
+        unavailable.SetActive(!isAvailable);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -40,11 +49,13 @@ public class CharacterPurchaseButton : MonoBehaviour, IPointerDownHandler, IDrag
 
         foreach(GameObject place in gameController.listPlaces)
         {
-            if(Vector2.Distance(gameController.characterDemo.transform.position, place.transform.position) < delta)
+            if(Vector2.Distance(gameController.characterDemo.transform.position, place.transform.position) < delta &&
+            !place.GetComponent<Places>().isOccupied)
             {
                 canPurchase = true;
                 gameController.characterDemo.transform.position = place.transform.position;
                 characterPosition = place.transform.position;
+                places = place.GetComponent<Places>();
             }
         }
     }
@@ -56,12 +67,14 @@ public class CharacterPurchaseButton : MonoBehaviour, IPointerDownHandler, IDrag
             if(!canPurchase) 
             {
                 Destroy(gameController.characterDemo);
+                places = null;
                 SoundManager.Instance.PlaySound(SoundManager.Instance.cancelCharacterSound);
             }
             else
             {
                 GameObject character = Instantiate(characterPrefab);
                 character.transform.position = characterPosition;
+                places.isOccupied = true;
                 SoundManager.Instance.PlaySound(SoundManager.Instance.placedCharacterSound);
                 Destroy(gameController.characterDemo);
             }

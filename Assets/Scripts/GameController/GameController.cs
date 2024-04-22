@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -50,6 +51,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Button nextButton;
     [SerializeField] private Button[] listHomeButtons;
     [SerializeField] private Button[] listRestartButtons;
+    [SerializeField] private List<Button> listCharacterPurchaseButtons = new List<Button>();
     public List<CharacterController> listCharacters;
 
     private void Awake()
@@ -59,7 +61,12 @@ public class GameController : MonoBehaviour
         spawner = listMapLevels[SaveLoadData.Instance.level].GetComponentInChildren<Spawner>();
         coins = SaveLoadData.Instance.listLevels.listLevelDetails[SaveLoadData.Instance.level].coins;
         health = SaveLoadData.Instance.listLevels.listLevelDetails[SaveLoadData.Instance.level].health;
-        SetText();
+
+        foreach(GameObject place in listPlaces)
+        {
+            Places places = place.GetComponentInChildren<Places>();
+            places.isOccupied = false;
+        }
 
         foreach(ListLevels.WaveInfo waveInfo in SaveLoadData.Instance.listLevels.listLevelDetails[SaveLoadData.Instance.level].waves)
         {
@@ -96,15 +103,19 @@ public class GameController : MonoBehaviour
             {
                 case "Witcher":
                     Button witcherButton = Instantiate(witcherButtonPrefab, buttonContainer);
+                    listCharacterPurchaseButtons.Add(witcherButton);
                     break;
                 case "Bomber":
                     Button bomberButton = Instantiate(bomberButtonPrefab, buttonContainer);
+                    listCharacterPurchaseButtons.Add(bomberButton);
                     break;
                 case "Hammer":
                     Button hammerButton = Instantiate(hammerButtonPrefab, buttonContainer);
+                    listCharacterPurchaseButtons.Add(hammerButton);
                     break;
                 case "Archer":
                     Button archerButton = Instantiate(archerButtonPrefab, buttonContainer);
+                    listCharacterPurchaseButtons.Add(archerButton);
                     break;
             }
         }
@@ -135,6 +146,8 @@ public class GameController : MonoBehaviour
         {
             nextButton.interactable = false;
         }
+
+        SetText();
 
         StartCoroutine(ShowWaveProcess());
     }
@@ -228,6 +241,19 @@ public class GameController : MonoBehaviour
     {
         coinsText.text = coins.ToString();
         healthText.text = health.ToString();
+
+        foreach(Button button in listCharacterPurchaseButtons)
+        {
+            CharacterPurchaseButton characterPurchaseButton = button.gameObject.GetComponent<CharacterPurchaseButton>();
+            if(coins >= characterPurchaseButton.characterPrefab.GetComponent<CharacterController>().price)
+            {
+                characterPurchaseButton.SetAvailable(true);
+            }
+            else
+            {
+                characterPurchaseButton.SetAvailable(false);
+            }
+        }
     }
 
     public void HideAllUpgradePanel()
