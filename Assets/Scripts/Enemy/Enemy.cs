@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     
     private Vector3 currentPointPosition;
     private Vector3 lastPointPosition;
+    [SerializeField] private Vector3 initScale;
     private SpriteRenderer spriteRenderer;
     private int currentWaypointIndex;
     public EnemyHealth enemyHealth;
@@ -56,6 +57,8 @@ public class Enemy : MonoBehaviour
 
         currentPointPosition = waypoints.Points[currentWaypointIndex];
         lastPointPosition = transform.position;
+
+        initScale = transform.localScale;
 
         moveSlow = moveDefault - 0.5f;
         moveSpeed = moveDefault;
@@ -131,11 +134,13 @@ public class Enemy : MonoBehaviour
     {
         if(currentPointPosition.x > lastPointPosition.x)
         {
-            spriteRenderer.flipX = false;
+            // spriteRenderer.flipX = false;
+            transform.localScale = initScale;
         }
         else
         {
-            spriteRenderer.flipX = true;
+            // spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-initScale.x, initScale.y, initScale.z);
         }
     }
 }

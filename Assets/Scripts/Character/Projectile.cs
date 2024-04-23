@@ -15,11 +15,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Type type;
 
     [SerializeField] protected float moveSpeed = 10f;
-    [SerializeField] private float minDistanceToDealDamage = 0.1f;
+    [SerializeField] private float minDistanceToDealDamage = 0.3f;
 
     public float characterDamage;
     [SerializeField] private float deltaRotate;
     [SerializeField] private bool isBegin;
+    [SerializeField] private Vector3 startPos;
     [SerializeField] private Vector3 pointTarget;
     [SerializeField] private Enemy enemyTarget;
     [SerializeField] private GameObject effect;
@@ -29,16 +30,24 @@ public class Projectile : MonoBehaviour
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
-        if(type == Type.Arrow || type == Type.Bom)
+        if(type == Type.Arrow)
         {
             isBegin = true;
             pointTarget = transform.position + new Vector3(0, 1f, 0);
             transform.Rotate(0, 0, 90);
         }
+        else if(type == Type.Bom)
+        {
+            // isBegin = true;
+            startPos = transform.position;
+            pointTarget = enemyTarget.transform.position;
+            StartCoroutine(FlyItem(startPos, pointTarget));
+        }
     }
 
     protected virtual void Update()
     {
+        if(type == Type.Bom) return;
         if(enemyTarget && enemyTarget.gameObject.activeSelf)
         {
             MoveProjectile();
@@ -65,22 +74,43 @@ public class Projectile : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, enemyTarget.transform.position, moveSpeed * Time.deltaTime);
 
-            if(type != Type.Bom)
+            float distanceToTarget = Vector2.Distance(enemyTarget.transform.position, transform.position);
+            if(distanceToTarget < minDistanceToDealDamage)
             {
-                float distanceToTarget = Vector2.Distance(enemyTarget.transform.position, transform.position);
-                if(distanceToTarget < minDistanceToDealDamage)
+                enemyTarget.enemyHealth.DealDamage(characterDamage);
+
+                if(type == Type.Magic)
                 {
-                    enemyTarget.enemyHealth.DealDamage(characterDamage);
-
-                    if(type == Type.Magic)
-                    {
-                        enemyTarget.Poisoned();
-                    }
-
-                    gameController.ShowEffect(effect, gameObject);
-                    Destroy(gameObject);
+                    enemyTarget.Poisoned();
                 }
+
+                gameController.ShowEffect(effect, gameObject);
+                Destroy(gameObject);
             }
+        }
+    }
+
+    public IEnumerator FlyItem(Vector3 initialPosition, Vector3 targetPosition)
+    {
+        float flyDuration = 1f;
+        float flyHeight = 3f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < flyDuration)
+        {
+            float t = elapsedTime / flyDuration;
+            transform.position = Vector3.Lerp(initialPosition, targetPosition, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * flyHeight; // Parabolic path
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPosition;
+
+        yield return new WaitForSeconds(0.05f);
+        if(gameObject)
+        {
+            gameController.ShowEffect(effect, gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -100,13 +130,16 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerStay2D(Collider2D other)
     {
-        if(other.CompareTag("Enemy") && type == Type.Bom && other.gameObject.activeSelf)
+        if(other.CompareTag("Enemy") && type == Type.Bom)
         {
-            float distanceToTarget = (enemyTarget.transform.position - transform.position).magnitude;
+            float distanceToTarget = Vector2.Distance(pointTarget, transform.position);
             if(distanceToTarget < minDistanceToDealDamage)
             {
-                Enemy enemy = other.GetComponent<Enemy>();
-                enemy.enemyHealth.DealDamage(characterDamage);
+                if(other.gameObject.activeSelf)
+                {
+                    Enemy enemy = other.GetComponent<Enemy>();
+                    enemy.enemyHealth.DealDamage(characterDamage);
+                }
                 gameController.ShowEffect(effect, gameObject);
                 Destroy(gameObject);
             }
